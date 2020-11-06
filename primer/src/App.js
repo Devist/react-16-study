@@ -30,13 +30,13 @@ export default class App extends Component {
         <div className="col">{this.state.count}</div>
         <div className="col-6">{this.isEven(this.state.count)}</div>
       </div>
-      <dic className="row">
+      <div className="row">
         <div className="col">
           <button className="btn btn-info m-2" onClick={this.handleClick}>
             Click Me
           </button>
         </div>
-      </dic>
+      </div>
     </div>
   )
 }
