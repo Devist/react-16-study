@@ -4,15 +4,27 @@ import { RestDataSource } from "./RestDataSource"
 
 const dataSource = new RestDataSource()
 
-export const loadData = (dataType) => ({
+export const loadData = (dataType, params) => ({
   type: ActionTypes.DATA_LOAD,
   payload:
     //   {
     //     dataType: dataType,
     //     data: phData[dataType]
     //   }
-    dataSource.GetData(dataType).then((response) => ({
+    dataSource.GetData(dataType, params).then((response) => ({
       dataType,
-      data: response.data
+      data: response.data,
+      total: Number(response.headers["x-total-count"]),
+      params
     }))
+})
+
+export const setPageSize = (newSize) => ({
+  type: ActionTypes.DATA_SET_PAGESIZE,
+  payload: newSize
+})
+
+export const setSortProperty = (newProp) => ({
+  type: ActionTypes.DATA_SET_SORT_PROPERTY,
+  payload: newProp
 })
