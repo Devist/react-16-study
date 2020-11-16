@@ -1,22 +1,20 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React, { Component } from "react"
-import "./App.css"
-import reactLogo from "./logo.svg"
-
-let name = "Adam"
-const city = "London"
+import { Display } from "./Display"
 
 export default class extends Component {
-  message = () => `Hello ${name} from ${city}`
+  constructor(props) {
+    super(props)
+    this.state = {
+      city: "London"
+    }
+  }
 
-  render = () => (
-    <div className="text-center">
-      <h4 className="bg-primary text-white text-center p-3">
-        {this.message()}
-      </h4>
-      <img src={reactLogo} alt="reactLogo" />
-      <link rel="stylesheet" href={process.env.PUBLIC_URL + "/static.css"} />
-      <img src={process.env.PUBLIC_URL + "/logo.svg"} alt="reactLogo" />
-    </div>
-  )
+  changeCity = () => {
+    this.setState({
+      city: this.state.city === "London" ? "New York" : "London"
+    })
+  }
+
+  render = () => <Display value={this.state.city} callback={this.changeCity} />
 }
